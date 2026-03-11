@@ -11,6 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
+// import { getCountries } from "../../api/tmdb-api";
 
 const formControl = 
   {
@@ -29,7 +30,7 @@ export default function FilterMoviesCard(props) {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
+
    const handleChange = (e, type, value) => {
     e.preventDefault()
     props.onUserInput(type, value)   // NEW
@@ -79,6 +80,26 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
+        {/* <FormControl sx={{...formControl}}>
+          <InputLabel id="production-country-label">Production Countries</InputLabel>
+            <Select
+    labelId="production-country-label"
+    id="production-country-select"
+    defaultValue=""
+    value={props.productionCountryFilter}
+    onChange={handleProductionCountryChange}
+  >
+            {productionCountries.map((productionCountry) => {
+              return (
+                <MenuItem key={productionCountry.id} value={productionCountry.id}>
+                  {productionCountry.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl> */}
+
       </CardContent>
       <CardMedia
         sx={{ height: 300 }}

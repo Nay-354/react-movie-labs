@@ -40,3 +40,13 @@ export const getMovieReviews = (id) => {
       return json.results;
     });
 };
+
+// export const getCountries = () => {
+//   return fetch(
+//     "https://api.themoviedb.org/3/country/movie/list?api_key=" +
+//       import.meta.env.VITE_TMDB_KEY +
+//       "&language=en-US"
+//   )
+//     .then(res => res.json())
+//     .then(json => json.countries);
+//};

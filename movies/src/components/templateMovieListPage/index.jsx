@@ -8,6 +8,7 @@ function MovieListPageTemplate({ movies, title, selectFavorite }) {
   const [nameFilter, setNameFilter] = useState("");
   const [genreFilter, setGenreFilter] = useState("0");
   const genreId = Number(genreFilter);
+  // const productionCountryId = Number(productionCountryFilter);
 
   let displayedMovies = movies
     .filter((m) => {
@@ -16,6 +17,9 @@ function MovieListPageTemplate({ movies, title, selectFavorite }) {
     .filter((m) => {
       return genreId > 0 ? m.genre_ids.includes(genreId) : true;
     });
+    // .filter((m) => {
+    //   return productionCountryId > 0 ? m.productionCountry_ids.includes(productionCountryIdId) : true;
+    // });
 
   const handleChange = (type, value) => {
     if (type === "name") setNameFilter(value);
@@ -37,11 +41,15 @@ function MovieListPageTemplate({ movies, title, selectFavorite }) {
             onUserInput={handleChange}
             titleFilter={nameFilter}
             genreFilter={genreFilter}
+            // productionCountryFilter={productionCountryFilter}
           />
         </Grid>
         <MovieList selectFavorite={selectFavorite} movies={displayedMovies}></MovieList>
       </Grid>
     </Grid>
   );
+
+
+
 }
 export default MovieListPageTemplate;
