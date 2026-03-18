@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
+import PlaylistAddIcon from '../../components/cardIcons/addToPlaylists';
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
@@ -29,6 +30,19 @@ export default function MovieCard({ movie, action }) {
   const handleAddToFavorite = (e) => {
     e.preventDefault();
     addToFavorites(movie);
+  };
+
+  const { playlists, addToPlaylists } = useContext(MoviesContext);
+
+  if (playlists.find((id) => id === movie.id)) {
+    movie.playlist = true;
+  } else {
+    movie.playlist = false
+  }
+
+  const handleAddToPlaylists = (e) => {
+    e.preventDefault();
+    addToPlaylists(movie);
   };
 
   return (
