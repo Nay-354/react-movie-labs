@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
-import PlaylistAddIcon from '../../components/cardIcons/addToPlaylists';
+import AddToPlaylistsIcon from '../../components/cardIcons/addToPlaylists';
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
@@ -46,14 +46,15 @@ export default function MovieCard({ movie, action }) {
   };
 
   return (
-    <Card>
-            <CardHeader
+    <Card sx={{ backgroundColor: 'turquoise' }}>
+            <CardHeader sx={{ backgroundColor: ' #E0B0FF' }}
         avatar={
           movie.favorite ? (
-            <Avatar sx={{ backgroundColor: 'red' }}>
+            <Avatar sx={{ backgroundColor: 'teal' }}>
               <FavoriteIcon />
             </Avatar>
-          ) : null
+          ): null
+       
         }
         title={
           <Typography variant="h5" component="p">
@@ -88,6 +89,7 @@ export default function MovieCard({ movie, action }) {
        <CardActions disableSpacing>
       
         {action(movie)}
+        <AddToPlaylistsIcon movie={movie} />
       
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
