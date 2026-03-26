@@ -8,7 +8,13 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
+import MovieReviews from "../movieReviews";
+import MovieRecommendations from "../movieRecommendations";
+import MovieList from "../movieList";
+import AddToFavoritesIcon from '../cardIcons/addToFavorites';
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import Header from "../headerMovieList";
 
 
 const root = {
@@ -19,12 +25,20 @@ const root = {
     padding: 1.5,
     margin: 0,
 };
+
 const chip = { margin: 0.5 };
+
+const rec = {
+maxWidth: '300px', 
+maxHeight: '300px',
+overflowX: 'auto',
+};
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
 console.log(movie);
   return (
+    
     <>
       <Typography variant="h5" component="h3">
         Overview
@@ -33,6 +47,7 @@ console.log(movie);
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
+
 
       <Paper 
         component="ul" 
@@ -61,6 +76,7 @@ console.log(movie);
           </li>
         ))}
       </Paper>
+      
       <Paper component="ul" sx={{...root}}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
@@ -72,14 +88,22 @@ console.log(movie);
           label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+ 
       </Paper>
+      
+
+    
+            <MovieRecommendations action={(movie) => {
+          return <AddToFavoritesIcon movie={movie} />
+        }} movie={movie} />
+
             <Fab
         color="secondary"
         variant="extended"
         onClick={() =>setDrawerOpen(true)}
         sx={{
           position: 'fixed',
-          bottom: '1em',
+          bottom: '5.3em',
           right: '1em'
         }}
       >
@@ -89,6 +113,10 @@ console.log(movie);
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+
+
+
+        
 
       {/* <Paper 
         component="ul" 
@@ -103,6 +131,7 @@ console.log(movie);
           </li>
         ))}
       </Paper> */}
+
       </>
 
       
