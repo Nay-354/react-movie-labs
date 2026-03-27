@@ -12,6 +12,7 @@ import MovieReviews from "../movieReviews";
 import MovieRecommendations from "../movieRecommendations";
 import MovieList from "../movieList";
 import AddToFavoritesIcon from '../cardIcons/addToFavorites';
+import PlaylistAddIcon from '../cardIcons/addToPlaylists';
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Header from "../headerMovieList";
@@ -33,6 +34,8 @@ maxWidth: '300px',
 maxHeight: '300px',
 overflowX: 'auto',
 };
+
+
 
 const MovieDetails = ({ movie }) => {  // Don't miss this!
 const [drawerOpen, setDrawerOpen] = useState(false);
@@ -94,7 +97,8 @@ console.log(movie);
 
     
             <MovieRecommendations action={(movie) => {
-          return <AddToFavoritesIcon movie={movie} />
+          return <AddToFavoritesIcon movie={movie} />,
+              <PlaylistAddIcon movie={movie} />
         }} movie={movie} />
 
             <Fab
