@@ -5,6 +5,8 @@ import { useQueries } from "@tanstack/react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
 import RemoveFromPlaylists from "../components/cardIcons/removeFromPlaylists";
+import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
+import WriteReview from "../components/cardIcons/writeReview";
 
 const PlaylistMoviesPage = () => {
   const {playlists: movieIds } = useContext(MoviesContext);
@@ -31,6 +33,10 @@ const PlaylistMoviesPage = () => {
     return q.data
   });
 
+    const favorites = upcomingMovies.filter(uM => uM.favorite)
+  localStorage.setItem('favorites', JSON.stringify(favorites))
+  const addToFavorites = (upcomingMovieId) => true 
+
   const toDo = () => true;
 
   return (
@@ -41,8 +47,12 @@ const PlaylistMoviesPage = () => {
         return (
           <>
             <RemoveFromPlaylists movie={movie} />
+            <AddToFavoritesIcon movie={movie} />
+            <WriteReview movie={movie} />
           </>
+          
         );
+        
       }}
     />
   );
