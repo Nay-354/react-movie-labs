@@ -51,6 +51,24 @@ export const getMovie = (args) => {
    });
   };
 
+  //   export const getRatedMovies = () => {
+  //   return fetch(
+  //     "https://api.themoviedb.org/3/rated/movie/list?api_key=" +
+  //       import.meta.env.VITE_TMDB_KEY +
+  //       "&language=en-US"
+  //   ).then( (response) => {
+  //     if (!response.ok) {
+  //       return response.json().then((error) => {
+  //         throw new Error(error.status_message || "Something went wrong");
+  //       });
+  //     }
+  //     return response.json();
+  //   })
+  //   .catch((error) => {
+  //     throw error
+  //  });
+  // };
+
   export const getMovieImages = ({ queryKey }) => {
     const [, idPart] = queryKey;
     const { id } = idPart;
@@ -155,10 +173,10 @@ export const getMovie = (args) => {
  });
 };
 
- export const getPeople = () => {
+ export const getActor = (id) => {
   //console.log(args)
   return fetch(
-    `https://api.themoviedb.org/3/movie/people?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `https://api.themoviedb.org/3/person/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
   ).then((response) => {
     if (!response.ok) {
       return response.json().then((error) => {
@@ -170,6 +188,40 @@ export const getMovie = (args) => {
   .catch((error) => {
     throw error
  });
+};
+
+  export const getActorImages = ({ queryKey }) => {
+    const [, idPart] = queryKey;
+    const { id } = idPart;
+    return fetch(
+      `https://api.themoviedb.org/3/person/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    ).then( (response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_message || "Something went wrong");
+        });
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error
+   });
+  };
+
+  export const getActors = () => {
+  return fetch(
+    `https://api.themoviedb.org/3/discover/person?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      return response.json().then((error) => {
+        throw new Error(error.status_message || "Something went wrong");
+      });
+    }
+    return response.json();
+  })
+  .catch((error) => {
+      throw error
+  });
 };
 
   export const getMovieRecommendations = ({ queryKey }) => {

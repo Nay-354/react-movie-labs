@@ -26,7 +26,9 @@ export default function FilterMoviesCard(props) {
 
    const { data, error, isPending, isError } = useQuery({
     queryKey: ['genres'],
-    queryFn: getGenres,
+    queryFn: getGenres
+    //   queryKey: ['ratings'],
+    // queryFn: getRatedMovies,
   });
 
   if (isPending) {
@@ -41,6 +43,11 @@ export default function FilterMoviesCard(props) {
     genres.unshift({ id: "0", name: "All" });
   }
 
+  //  const ratings = data.ratings;
+  // if (ratings[0].name !== "All"){
+  //   ratings.unshift({ id: "0", name: "All" });
+  // }
+
   const handleChange = (e, type, value) => {
     e.preventDefault();
     props.onUserInput(type, value); 
@@ -49,6 +56,10 @@ export default function FilterMoviesCard(props) {
   const handleTextChange = (e, props) => {
     handleChange(e, "name", e.target.value);
   };
+
+//  const handleRatingChange = (e) => {
+//     handleChange(e, "rating", e.target.value);
+//   };
 
   const handleGenreChange = (e) => {
     handleChange(e, "genre", e.target.value);
@@ -91,6 +102,25 @@ export default function FilterMoviesCard(props) {
             })}
           </Select>
         </FormControl>
+
+        {/* <FormControl sx={{...formControl}}>
+          <InputLabel id="rating-label">Rating</InputLabel>
+            <Select
+    labelId="rating-label"
+    id="rating-select"
+    defaultValue=""
+    value={props.ratingFilter}
+    onChange={handleRatingChange}
+  >
+            {ratings.map((rating) => {
+              return (
+                <MenuItem key={rating.id} value={rating.id}>
+                  {rating.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl> */}
 
         {/* <FormControl sx={{...formControl}}>
           <InputLabel id="production-country-label">Production Countries</InputLabel>

@@ -45,7 +45,8 @@ const App = () => {
            <Route path="/movies/popular" element={<PopularMoviesPage />} />
            <Route path="/movies/topRated" element={<TopRatedMoviesPage />} />
            <Route path="/movies/nowPlaying" element={<NowPlayingMoviesPage />} />
-           <Route path="/movies/people" element={< PeoplePage/>} />
+           <Route path="/movies/actor" element={<PeoplePage />} />
+           <Route path="/movies/people" element={<PeoplePage />} />
         </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
